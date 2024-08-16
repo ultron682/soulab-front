@@ -1,14 +1,10 @@
 # soullab-front
+![image](https://github.com/user-attachments/assets/fef8ba8b-c7c5-4fc6-b29c-a09d4bc4c392)
 
-This template should help get you started developing with Vue 3 in Vite.
+![image](https://github.com/user-attachments/assets/b8391e5f-ca0e-4236-8ed2-68757e48f56d)
 
-## Recommended IDE Setup
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
+Vue 3
 
 ## Project Setup
 
@@ -20,10 +16,4 @@ npm install
 
 ```sh
 npm run dev
-```
-
-### Compile and Minify for Production
-
-```sh
-npm run build
 ```
