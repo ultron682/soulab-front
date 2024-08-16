@@ -23,15 +23,9 @@
       </div>
       <button type="submit">Wyślij</button>
     </form>
-    <!-- <div v-if="submittedData">
-        <h2>Przesłane dane</h2>
-        <table>
-          <tr><th>Imię</th><td>{{ submittedData.firstName }}</td></tr>
-          <tr><th>Nazwisko</th><td>{{ submittedData.lastName }}</td></tr>
-          <tr><th>Email</th><td>{{ submittedData.email }}</td></tr>
-          <tr><th>Wiadomość</th><td>{{ submittedData.message }}</td></tr>
-        </table>
-      </div> -->
+    <div v-if="isSavedData == false">
+      <h2>Dane nie zostały zapisane w bazie danych</h2>
+    </div>
   </div>
 </template>
   
@@ -51,8 +45,8 @@ export default {
     });
 
     const errors = ref({});
-    const submittedData = ref(null);
     const router = useRouter();
+    const isSavedData = ref(true);
 
     const validationSchema = yup.object().shape({
       firstName: yup.string().required("Imię jest wymagane"),
@@ -85,19 +79,26 @@ export default {
             "http://localhost:5555/api/contact",
             form.value
           );
-          submittedData.value = response.data;
           console.log(response.data);
-          router.push({
-            name: "ContactView",
-            query: {
-              firstName: response.data.firstName,
-              lastName: response.data.lastName,
-              email: response.data.email,
-              message: response.data.message,
-            },
-          });
+
+          if (response.data.id) {
+            isSavedData.value = true;
+            // if id exist then saved in database
+            router.push({
+              name: "ContactView",
+              query: {
+                firstName: response.data.firstName,
+                lastName: response.data.lastName,
+                email: response.data.email,
+                message: response.data.message,
+              },
+            });
+          } else {
+            isSavedData.value = false;
+          }
         } catch (error) {
           console.error("Error submitting form:", error);
+          isSavedData.value = false;
         }
       }
     };
@@ -106,7 +107,7 @@ export default {
       form,
       errors,
       handleSubmit,
-      submittedData,
+      isSavedData
     };
   },
 };
