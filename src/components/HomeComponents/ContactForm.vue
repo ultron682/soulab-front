@@ -33,7 +33,7 @@
 import { ref } from "vue";
 import axios from "axios";
 import * as yup from "yup";
-import { useRouter, useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
@@ -85,7 +85,7 @@ export default {
             isSavedData.value = true;
             // if id exist then saved in database
             router.push({
-              name: "ContactView",
+              name: "contact",
               query: {
                 firstName: response.data.firstName,
                 lastName: response.data.lastName,

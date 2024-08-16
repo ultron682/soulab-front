@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="data-container">
     <h2>Przesłane dane</h2>
-    <table>
+    <table class="data-table">
       <tr>
         <th>Imię</th>
         <td>{{ firstName }}</td>
@@ -23,11 +23,25 @@
 </template>
 
 <script>
-import { useRoute } from 'vue-router';
+import { useRoute } from "vue-router";
+import { useRouter } from "vue-router";
 
 export default {
   setup() {
     const route = useRoute();
+    const router = useRouter();
+
+    if (
+      route.query.firstName === undefined ||
+      route.query.lastName === undefined ||
+      route.query.email === undefined ||
+      route.query.message === undefined
+    ) {
+      router.push({
+        name: "home",
+      });
+      console.log(route.query.firstName);
+    }
 
     const firstName = route.query.firstName;
     const lastName = route.query.lastName;
@@ -38,3 +52,43 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.data-container {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem;
+  border: 1px solid #ccc;
+  border-radius: 0.5rem;
+  background-color: #f9f9f9;
+}
+
+h2 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
+.data-table th,
+.data-table td {
+  padding: 0.75rem;
+  text-align: left;
+  border: 1px solid #ddd;
+}
+
+.data-table th {
+  background-color: #f2f2f2;
+  color: #333;
+  width: 30%;
+}
+
+.data-table td {
+  background-color: #fff;
+}
+</style>
