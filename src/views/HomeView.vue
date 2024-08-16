@@ -1,5 +1,5 @@
 <script setup>
-import ContactForm from '../components/ContactComponents/ContactForm.vue'
+import ContactForm from '../components/HomeComponents/ContactForm.vue'
 </script>
 
 <template>

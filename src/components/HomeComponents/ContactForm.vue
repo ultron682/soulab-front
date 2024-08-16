@@ -1,29 +1,29 @@
 <template>
   <div>
     <form @submit.prevent="handleSubmit">
-      <div>
+      <div class="form-group">
         <label for="firstName">Imię:</label>
-        <input v-model="form.firstName" type="text" id="firstName" />
-        <span>{{ errors.firstName }}</span>
+        <input v-model="form.firstName" type="text" id="firstName" class="form-control" />
+        <span class="error-message">{{ errors.firstName }}</span>
       </div>
-      <div>
+      <div class="form-group">
         <label for="lastName">Nazwisko:</label>
-        <input v-model="form.lastName" type="text" id="lastName" />
-        <span>{{ errors.lastName }}</span>
+        <input v-model="form.lastName" type="text" id="lastName" class="form-control" />
+        <span class="error-message">{{ errors.lastName }}</span>
       </div>
-      <div>
+      <div class="form-group">
         <label for="email">Adres e-mail:</label>
-        <input v-model="form.email" type="email" id="email" />
-        <span>{{ errors.email }}</span>
+        <input v-model="form.email" type="email" id="email" class="form-control" />
+        <span class="error-message">{{ errors.email }}</span>
       </div>
-      <div>
+      <div class="form-group">
         <label for="message">Treść wiadomości:</label>
-        <textarea v-model="form.message" id="message"></textarea>
-        <span>{{ errors.message }}</span>
+        <textarea v-model="form.message" id="message" class="form-control"></textarea>
+        <span class="error-message">{{ errors.message }}</span>
       </div>
-      <button type="submit">Wyślij</button>
+      <button type="submit" class="submit-button">Wyślij</button>
     </form>
-    <div v-if="isSavedData == false">
+    <div v-if="isSavedData == false" class="error-container">
       <h2>Dane nie zostały zapisane w bazie danych</h2>
     </div>
   </div>
@@ -112,3 +112,45 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.75rem;
+  font-size: 1rem;
+  border: 1px solid #ccc;
+  border-radius: 0.25rem;
+}
+
+.error-message {
+  color: red;
+  font-size: 0.875rem;
+  margin-top: 0.5rem;
+  display: block;
+}
+
+.submit-button {
+  background-color: #007bff;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.submit-button:hover {
+  background-color: #0056b3;
+}
+
+.error-container {
+  margin-top: 1.5rem;
+  color: red;
+  font-weight: bold;
+}
+</style>

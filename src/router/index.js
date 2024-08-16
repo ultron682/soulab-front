@@ -12,7 +12,7 @@ const router = createRouter({
     },
     {
       path: '/ContactView',
-      name: 'ContactView',
+      name: 'contact',
       component: ContactView
     }
   ]
