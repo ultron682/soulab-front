@@ -79,7 +79,6 @@ export default {
             "http://localhost:5555/api/contact",
             form.value
           );
-          console.log(response.data);
 
           if (response.data.id) {
             isSavedData.value = true;

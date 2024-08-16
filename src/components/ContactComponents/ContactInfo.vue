@@ -19,6 +19,7 @@
         <td>{{ message }}</td>
       </tr>
     </table>
+    <button @click="goHome" class="home-button">Powrót na stronę główną</button>
   </div>
 </template>
 
@@ -40,15 +41,18 @@ export default {
       router.push({
         name: "home",
       });
-      console.log(route.query.firstName);
     }
+
+    const goHome = () => {
+      router.push({ name: "home" });
+    };
 
     const firstName = route.query.firstName;
     const lastName = route.query.lastName;
     const email = route.query.email;
     const message = route.query.message;
 
-    return { firstName, lastName, email, message };
+    return { firstName, lastName, email, message, goHome };
   },
 };
 </script>
@@ -90,5 +94,22 @@ h2 {
 
 .data-table td {
   background-color: #fff;
+}
+
+.home-button {
+  display: block;
+  margin: 2rem auto 0;
+  padding: 0.75rem 1.5rem;
+  font-size: 1rem;
+  color: white;
+  background-color: #007bff;
+  border: none;
+  border-radius: 0.25rem;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #0056b3;
 }
 </style>
